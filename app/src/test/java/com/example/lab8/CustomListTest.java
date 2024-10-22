@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.beans.Transient;
 import java.sql.Array;
 import java.util.ArrayList;
 
@@ -34,6 +35,15 @@ public class CustomListTest {
         int listSize = list.getCount();
         list.addCity(new City("Estevan", "SK"));
         assertEquals(list.getCount(), listSize + 1);
+    }
+
+    @Test
+    public void testHasCity() {
+        CustomList customList = new CustomList(context, new ArrayList<>());
+        City city = new City("Shanghai", "Shanghai");
+        customList.addCity(city);
+        assertTrue(customList.hasCity(city));
+        assertFalse(customList.hasCity(new City("Beijing", "Beijing")));
     }
 
 }
